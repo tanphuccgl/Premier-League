@@ -6,5 +6,7 @@ class XColors {
   static final MaterialColor primaryColors =
       ColorUtility.generateMaterialColor(primary);
 
-  static const primary = Color(0xff11B1A5);
+  static const primary = Color(0xffFF2882);
+
+  static const primary1 = Color(0xff37003C);
 }
