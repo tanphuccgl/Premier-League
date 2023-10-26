@@ -1,21 +1,21 @@
 import 'package:app/features/common/pages/not_found_page.dart';
-import 'package:app/features/profile/pages/profile_page.dart';
+import 'package:app/features/news/pages/news_page.dart';
 import 'package:app/router/base_coordinator.dart';
 import 'package:flutter/material.dart';
 
-class XProfileRouterName {
-  static const String home = '/profile';
+class XNewsRouterName {
+  static const String news = '/news';
 }
 
-class ProfileCoordinator extends BaseCoordinator {
+class NewsCoordinator extends BaseCoordinator {
   @override
-  String get initialRoute => XProfileRouterName.home;
+  String get initialRoute => XNewsRouterName.news;
 
   @override
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case XProfileRouterName.home:
-        return MaterialPageRoute(builder: (_) => const ProfilePage());
+      case XNewsRouterName.news:
+        return MaterialPageRoute(builder: (_) => const NewsPage());
 
       default:
         return MaterialPageRoute(builder: (_) => const NotFoundPage());
