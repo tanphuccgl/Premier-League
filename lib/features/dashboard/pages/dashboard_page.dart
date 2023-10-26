@@ -5,6 +5,7 @@ import 'package:app/features/home/router/home_router.dart';
 import 'package:app/features/profile/router/news_router.dart';
 import 'package:app/features/seasons/router/seasons_router.dart';
 import 'package:app/features/tables/router/tables_router.dart';
+import 'package:app/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,13 +25,25 @@ class DashboardPage extends StatelessWidget {
       child: BlocProvider(
         create: (_) => BottomNavigationBloc(),
         child: BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
-          builder: (_, state) {
+          builder: (context, state) {
             return WillPopScope(
               onWillPop: () async => false,
               child: Stack(children: [
                 Scaffold(
                   body: state.pageIndex.page,
                   bottomNavigationBar: const FloatBottomNavigation(),
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerDocked,
+                  floatingActionButton: GestureDetector(
+                      onTap: () =>
+                          context.read<BottomNavigationBloc>().onItemTapped(2),
+                      child: SizedBox.square(
+                        dimension: 40,
+                        child: Image.asset(
+                          XImage.home,
+                          fit: BoxFit.fill,
+                        ),
+                      )),
                 ),
               ]),
             );
