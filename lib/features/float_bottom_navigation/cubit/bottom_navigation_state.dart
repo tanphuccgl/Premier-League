@@ -3,7 +3,7 @@ part of 'bottom_navigation_bloc.dart';
 class BottomNavigationState extends Equatable {
   final PageIndex pageIndex;
 
-  const BottomNavigationState({this.pageIndex = PageIndex.news});
+  const BottomNavigationState({this.pageIndex = PageIndex.seasons});
 
   @override
   List<Object> get props => [
@@ -24,6 +24,7 @@ enum PageIndex {
   tables,
   fixtures,
   news,
+  seasons;
 }
 
 extension PageIndexExt on PageIndex {
@@ -36,6 +37,8 @@ extension PageIndexExt on PageIndex {
       case PageIndex.fixtures:
         return "Student Card";
       case PageIndex.news:
+        return "Profile";
+      case PageIndex.seasons:
         return "Profile";
       default:
         return '';
@@ -52,6 +55,8 @@ extension PageIndexExt on PageIndex {
         return const FixturesWrapperPage();
       case PageIndex.news:
         return const NewsWrapperPage();
+      case PageIndex.seasons:
+        return const SeasonsWrapperPage();
 
       default:
         return const EmptyWidget();

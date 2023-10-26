@@ -1,5 +1,6 @@
 import 'package:app/features/fixtures/widgets/section_fixtures.dart';
 import 'package:app/features/fixtures/widgets/section_title1.dart';
+import 'package:app/features/tables/widgets/section_ads.dart';
 
 import 'package:app/features/tables/widgets/section_filter.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class FixturesPage extends StatelessWidget {
             height: 20,
           ),
           SectionFixtures(),
+          SectionAds(),
         ],
       )),
     );

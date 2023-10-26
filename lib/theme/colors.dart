@@ -11,4 +11,6 @@ class XColors {
   static const primary1 = Color(0xff37003C);
   static final primary2 = Color(0xFF37003c).withOpacity(0.83);
   static const primary3 = Color(0xffCABFBF);
+  static const primary4 = Color(0xffF6E9E9);
+  static const primary5 = Color(0xffD5D4D4);
 }
