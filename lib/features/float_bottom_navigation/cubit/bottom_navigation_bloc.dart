@@ -1,5 +1,5 @@
-import 'package:app/features/card_student/router/card_student_wrapper_router.dart';
 import 'package:app/features/common/empty_widget.dart';
+import 'package:app/features/fixtures/router/fixtures_wrapper_router.dart';
 import 'package:app/features/home/router/home_wrapper_router.dart';
 import 'package:app/features/profile/router/profile_wrapper_router.dart';
 import 'package:app/features/tables/router/tables_wrapper_router.dart';
