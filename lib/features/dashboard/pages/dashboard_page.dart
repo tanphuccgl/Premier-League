@@ -1,4 +1,4 @@
-import 'package:app/features/card_student/router/card_student_router.dart';
+import 'package:app/features/fixtures/router/fixtures_router.dart';
 import 'package:app/features/float_bottom_navigation/cubit/bottom_navigation_bloc.dart';
 import 'package:app/features/float_bottom_navigation/pages/float_bottom_navigation.dart';
 import 'package:app/features/home/router/home_router.dart';
@@ -16,7 +16,7 @@ class DashboardPage extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (_) => HomeCoordinator()),
         RepositoryProvider(create: (_) => ProfileCoordinator()),
-        RepositoryProvider(create: (_) => CardStudentCoordinator()),
+        RepositoryProvider(create: (_) => FixturesCoordinator()),
         RepositoryProvider(create: (_) => TablesCoordinator()),
       ],
       child: BlocProvider(
