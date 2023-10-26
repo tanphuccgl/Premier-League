@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'schedule_bloc.dart';
+part of 'tables_bloc.dart';
 
 class ScheduleState extends Equatable {
   @override
