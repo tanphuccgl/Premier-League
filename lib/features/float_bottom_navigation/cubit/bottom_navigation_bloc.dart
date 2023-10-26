@@ -2,7 +2,7 @@ import 'package:app/features/card_student/router/card_student_wrapper_router.dar
 import 'package:app/features/common/empty_widget.dart';
 import 'package:app/features/home/router/home_wrapper_router.dart';
 import 'package:app/features/profile/router/profile_wrapper_router.dart';
-import 'package:app/features/schedule/router/schedule_wrapper_router.dart';
+import 'package:app/features/tables/router/tables_wrapper_router.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

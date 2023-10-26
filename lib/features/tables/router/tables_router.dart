@@ -1,21 +1,21 @@
 import 'package:app/features/common/pages/not_found_page.dart';
-import 'package:app/features/schedule/pages/schedule_page.dart';
+import 'package:app/features/tables/pages/tables_page.dart';
 import 'package:app/router/base_coordinator.dart';
 import 'package:flutter/material.dart';
 
-class XScheduleRouterName {
-  static const String schedule = '/schedule';
+class XTablesRouterName {
+  static const String tables = '/tables';
 }
 
-class ScheduleCoordinator extends BaseCoordinator {
+class TablesCoordinator extends BaseCoordinator {
   @override
-  String get initialRoute => XScheduleRouterName.schedule;
+  String get initialRoute => XTablesRouterName.tables;
 
   @override
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case XScheduleRouterName.schedule:
-        return MaterialPageRoute(builder: (_) => const SchedulePage());
+      case XTablesRouterName.tables:
+        return MaterialPageRoute(builder: (_) => const TablesPage());
 
       default:
         return MaterialPageRoute(builder: (_) => const NotFoundPage());
