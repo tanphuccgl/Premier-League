@@ -1,8 +1,12 @@
+import 'package:app/features/seasons/cubit/seasons_bloc.dart';
 import 'package:app/features/tables/widgets/section_ads.dart';
+import 'package:app/network/model/club_model.dart';
+import 'package:app/network/model/player_model.dart';
 
 import 'package:app/theme/colors.dart';
 import 'package:app/utils/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SeasonsPage extends StatelessWidget {
@@ -10,152 +14,151 @@ class SeasonsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2, // Số lượng tab
-      child: Scaffold(
-        backgroundColor: XColors.primary4,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: XColors.primary1,
-          title: Text('Seasons'),
-          bottom: TabBar(
-            labelStyle: TextStyle(
-              color: Colors.white,
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-            ),
-            indicatorColor: XColors.primary,
-            tabs: [
-              Tab(text: 'Players'),
-              Tab(text: 'Clubs'),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            // Nội dung cho Tab 1
-            ListView(
-              children: [
-                Container(
-                  width: ScreenUtil().screenWidth,
-                  height: 47.h,
-                  color: XColors.primary3,
-                  padding: EdgeInsets.only(left: 10, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+    return BlocProvider(
+      create: (context) => SeasonsBloc(),
+      child: BlocBuilder<SeasonsBloc, SeasonsState>(
+        builder: (context, state) {
+          return DefaultTabController(
+            length: 2, // Số lượng tab
+            child: Scaffold(
+              backgroundColor: XColors.primary4,
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: XColors.primary1,
+                title: Text('Seasons'),
+                bottom: TabBar(
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  indicatorColor: XColors.primary,
+                  tabs: [
+                    Tab(text: 'Players'),
+                    Tab(text: 'Clubs'),
+                  ],
+                ),
+              ),
+              body: TabBarView(
+                children: [
+                  // Nội dung cho Tab 1
+                  ListView(
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Season",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                      Container(
+                        width: ScreenUtil().screenWidth,
+                        height: 47.h,
+                        color: XColors.primary3,
+                        padding: EdgeInsets.only(left: 10, right: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Season",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  "2022/23",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Text(
-                            "2022/23",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                            Image.asset(
+                              XImage.icon1,
+                              width: 8,
+                              height: 8,
+                            )
+                          ],
+                        ),
                       ),
-                      Image.asset(
-                        XImage.icon1,
-                        width: 8,
-                        height: 8,
-                      )
+                      Container(
+                        width: ScreenUtil().screenWidth,
+                        height: 47.h,
+                        color: Colors.white,
+                        child: Image.asset(XImage.logo2),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      if (state.playerModel.id != null) item(state.playerModel),
+                      SectionAds()
                     ],
                   ),
-                ),
-                Container(
-                  width: ScreenUtil().screenWidth,
-                  height: 47.h,
-                  color: Colors.white,
-                  child: Image.asset(XImage.logo2),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                item(),
-                item(),
-                item(),
-                item(),
-                item(),
-                SectionAds()
-              ],
-            ),
-            // Nội dung cho Tab 2
-            ListView(
-              children: [
-                Container(
-                  width: ScreenUtil().screenWidth,
-                  height: 47.h,
-                  color: XColors.primary3,
-                  padding: EdgeInsets.only(left: 10, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  // Nội dung cho Tab 2
+                  ListView(
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Season",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                      Container(
+                        width: ScreenUtil().screenWidth,
+                        height: 47.h,
+                        color: XColors.primary3,
+                        padding: EdgeInsets.only(left: 10, right: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Season",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  "2022/23",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Text(
-                            "2022/23",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                            Image.asset(
+                              XImage.icon1,
+                              width: 8,
+                              height: 8,
+                            )
+                          ],
+                        ),
                       ),
-                      Image.asset(
-                        XImage.icon1,
-                        width: 8,
-                        height: 8,
-                      )
+                      Container(
+                        width: ScreenUtil().screenWidth,
+                        height: 47.h,
+                        color: Colors.white,
+                        child: Image.asset(XImage.logo2),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      if (state.clubModel.id != null) item2(state.clubModel),
+                      SectionAds()
                     ],
                   ),
-                ),
-                Container(
-                  width: ScreenUtil().screenWidth,
-                  height: 47.h,
-                  color: Colors.white,
-                  child: Image.asset(XImage.logo2),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                item2(),
-                item2(),
-                item2(),
-                item2(),
-                item2(),
-                SectionAds()
-              ],
+                ],
+              ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
 
-  Widget item() {
+  Widget item(PlayerModel data) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 4),
         width: ScreenUtil().screenWidth,
@@ -184,7 +187,7 @@ class SeasonsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Harry Kane",
+                      data.name ?? "",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 9,
@@ -192,7 +195,7 @@ class SeasonsPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Tottenham Hotspur",
+                      data.clubId?.name ?? "",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 9,
@@ -203,8 +206,8 @@ class SeasonsPage extends StatelessWidget {
                 )),
             Expanded(
               flex: 2,
-              child: Image.asset(
-                XImage.logo,
+              child: Image.network(
+                data.clubId?.image ?? XImage.network,
                 width: 30,
                 height: 30,
               ),
@@ -213,7 +216,7 @@ class SeasonsPage extends StatelessWidget {
         ));
   }
 
-  Widget item2() {
+  Widget item2(ClubModel data) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 4),
         width: ScreenUtil().screenWidth,
@@ -238,7 +241,7 @@ class SeasonsPage extends StatelessWidget {
             Expanded(
               flex: 6,
               child: Text(
-                "Manchester City",
+                data.clubID?.name ?? "",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 12,
@@ -248,8 +251,8 @@ class SeasonsPage extends StatelessWidget {
             ),
             Expanded(
               flex: 2,
-              child: Image.asset(
-                XImage.logo,
+              child: Image.network(
+                data.clubID?.image ?? XImage.network,
                 width: 30,
                 height: 30,
               ),

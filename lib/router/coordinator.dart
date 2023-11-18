@@ -1,4 +1,4 @@
-import 'package:app/domain.dart';
+import 'package:app/network/repositories/domain.dart';
 import 'package:flutter/material.dart';
 
 class XCoordinator {

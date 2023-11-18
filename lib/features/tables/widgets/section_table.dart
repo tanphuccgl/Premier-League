@@ -1,6 +1,9 @@
+import 'package:app/features/tables/cubit/tables_bloc.dart';
+import 'package:app/network/model/table_model.dart';
 import 'package:app/theme/colors.dart';
 import 'package:app/utils/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SectionTable extends StatelessWidget {
@@ -8,52 +11,37 @@ class SectionTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          color: XColors.primary3,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              text("Pos"),
-              text("Club"),
-              text("P"),
-              text("W"),
-              text("D"),
-              text("L"),
-              text("GD"),
-              text("Pts"),
-            ],
-          ),
-        ),
-        Container(
-          color: XColors.primary1,
-          child: Column(
-            children: [
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-              item(),
-            ],
-          ),
-        )
-      ],
+    return BlocBuilder<TableBloc, TableState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            Container(
+              color: XColors.primary3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  text("Pos"),
+                  text("Club"),
+                  text("P"),
+                  text("W"),
+                  text("D"),
+                  text("L"),
+                  text("GD"),
+                  text("Pts"),
+                ],
+              ),
+            ),
+            Container(
+              color: XColors.primary1,
+              child: Column(
+                children: [
+                  if (state.data.id != null) item(state.data),
+                ],
+              ),
+            )
+          ],
+        );
+      },
     );
   }
 
@@ -72,7 +60,7 @@ class SectionTable extends StatelessWidget {
     );
   }
 
-  Widget item() {
+  Widget item(TableModel data) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 4),
       height: 54.h,
@@ -80,36 +68,35 @@ class SectionTable extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          text("1"),
+          text(data.position.toString()),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  XImage.logo1,
+                Image.network(
+                  data.clubName?.image ?? XImage.network,
                   width: 20.w,
                   height: 20.w,
                 ),
-                SizedBox(
-                  width: 5,
-                ),
                 Text(
-                  "LEE",
+                  data.clubName?.name.toString() ?? "",
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
             ),
           ),
-          text("37"),
-          text("28"),
-          text("5"),
-          text("4"),
-          text("62"),
-          text("89")
+          text(data.points.toString()),
+          text(data.won.toString()),
+          text(data.draw.toString()),
+          text(data.lose.toString()),
+          text(data.gd.toString()),
+          text(data.ga.toString())
         ],
       ),
     );
