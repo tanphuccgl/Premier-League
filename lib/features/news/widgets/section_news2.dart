@@ -1,5 +1,8 @@
+import 'package:app/features/news/cubit/news_bloc.dart';
+import 'package:app/network/model/new_model.dart';
 import 'package:app/utils/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SectionNews2 extends StatelessWidget {
@@ -7,28 +10,24 @@ class SectionNews2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        item(),
-        item(),
-        item(),
-        item(),
-        item(),
-        item(),
-        item(),
-        item(),
-        item(),
-      ],
+    return BlocBuilder<NewsBloc, NewsState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            if (state.data.id != null) item(state.data),
+          ],
+        );
+      },
     );
   }
 
-  Widget item() {
+  Widget item(NewModel data) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
           Image.network(
-            XImage.network,
+            data.image ?? XImage.network,
             width: 107.w,
             height: 71.h,
           ),
@@ -41,7 +40,7 @@ class SectionNews2 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "News",
+                  data.title ?? "",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -54,7 +53,7 @@ class SectionNews2 extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  "Game week 37 FPL bonus points: Shaw adds extras",
+                  data.description ?? "",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

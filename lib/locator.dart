@@ -1,5 +1,5 @@
 import 'package:app/bloc_observer.dart';
-import 'package:app/domain.dart';
+import 'package:app/network/repositories/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
