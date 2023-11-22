@@ -12,10 +12,12 @@ class SectionNews2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsBloc, NewsState>(
       builder: (context, state) {
-        return Column(
-          children: [
-            if (state.data.id != null) item(state.data),
-          ],
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: state.data.length,
+          itemBuilder: (context, index) {
+            return item(state.data[index]);
+          },
         );
       },
     );

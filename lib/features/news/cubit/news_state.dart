@@ -2,10 +2,10 @@
 part of 'news_bloc.dart';
 
 class NewsState extends Equatable {
-  final NewModel data;
-  const NewsState(
-    this.data,
-  );
+  final List<NewModel> data;
+  const NewsState({
+    this.data = const [],
+  });
 
   @override
   List<Object?> get props => [
@@ -13,10 +13,10 @@ class NewsState extends Equatable {
       ];
 
   NewsState copyWith({
-    NewModel? data,
+    List<NewModel>? data,
   }) {
     return NewsState(
-      data ?? this.data,
+      data: data ?? this.data,
     );
   }
 }

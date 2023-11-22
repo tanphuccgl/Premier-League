@@ -36,9 +36,9 @@ class ClubID {
   String? codeClub;
   String? name;
   String? image;
-  Null? logo;
+  String? logo;
   int? active;
-  Null? linkclub;
+  String? linkclub;
   Stadiumid? stadiumid;
 
   ClubID(
@@ -84,10 +84,10 @@ class Stadiumid {
   String? name;
   String? image;
   int? active;
-  Null? capacity;
-  Null? address;
-  Null? pitchSize;
-  Null? description;
+  String? capacity;
+  String? address;
+  String? pitchSize;
+  String? description;
   int? id;
 
   Stadiumid(
@@ -127,7 +127,7 @@ class Stadiumid {
 
 class Season {
   String? seasonname;
-  Null? champion;
+  String? champion;
   int? active;
   int? activeUI;
   int? id;

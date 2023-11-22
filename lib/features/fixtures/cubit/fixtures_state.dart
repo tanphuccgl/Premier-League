@@ -2,17 +2,17 @@
 part of 'fixtures_bloc.dart';
 
 class FixturesState extends Equatable {
-  final MatchModel data;
-  const FixturesState(this.data);
+  final List<MatchModel> data;
+  const FixturesState({this.data = const []});
 
   @override
   List<Object?> get props => [data];
 
   FixturesState copyWith({
-    MatchModel? data,
+    List<MatchModel>? data,
   }) {
     return FixturesState(
-      data ?? this.data,
+      data: data ?? this.data,
     );
   }
 }

@@ -1,38 +1,20 @@
-import 'dart:convert';
-
 import 'package:app/network/model/club_model.dart';
 import 'package:app/network/model/common/result.dart';
 import 'package:app/network/model/match_model.dart';
 import 'package:app/network/model/new_model.dart';
 import 'package:app/network/model/player_model.dart';
 import 'package:app/network/model/table_model.dart';
-import 'package:app/network/repositories/data_mock/club_data_mock.dart';
-import 'package:app/network/repositories/data_mock/match_data_mock.dart';
-import 'package:app/network/repositories/data_mock/new_data_mock.dart';
-import 'package:app/network/repositories/data_mock/player_data_mock.dart';
-import 'package:app/network/repositories/data_mock/table_data_mock.dart';
 import 'package:app/network/repositories/domain.dart';
 import 'package:app/network/repositories/repository.dart';
 import 'package:app/utils/helper/logger.dart';
 import 'package:dio/dio.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
 
-class RepositoryMockImpl extends Repository {
+class RepositoryImpl extends Repository {
   @override
   Future<XResult<List<ClubModel>>> getClubModel() async {
-    final dio = Dio(BaseOptions());
-    final dioAdapter = DioAdapter(dio: dio);
+    final dio = Dio();
 
     try {
-      dioAdapter.onGet(
-        Endpoints.getClubModel,
-        (server) => server.reply(
-          200,
-          jsonDecode(clubData),
-          delay: const Duration(seconds: Endpoints.delayMock),
-        ),
-      );
-
       final response = await dio.get(Endpoints.getClubModel);
 
       final list = response.data as List;
@@ -49,19 +31,9 @@ class RepositoryMockImpl extends Repository {
 
   @override
   Future<XResult<List<MatchModel>>> getMatch() async {
-    final dio = Dio(BaseOptions());
-    final dioAdapter = DioAdapter(dio: dio);
+    final dio = Dio();
 
     try {
-      dioAdapter.onGet(
-        Endpoints.getMatch,
-        (server) => server.reply(
-          200,
-          jsonDecode(matchData),
-          delay: const Duration(seconds: Endpoints.delayMock),
-        ),
-      );
-
       final response = await dio.get(Endpoints.getMatch);
 
       final list = response.data as List;
@@ -78,19 +50,9 @@ class RepositoryMockImpl extends Repository {
 
   @override
   Future<XResult<List<NewModel>>> getNewModel() async {
-    final dio = Dio(BaseOptions());
-    final dioAdapter = DioAdapter(dio: dio);
+    final dio = Dio();
 
     try {
-      dioAdapter.onGet(
-        Endpoints.getNewModel,
-        (server) => server.reply(
-          200,
-          json.decode(newData),
-          delay: const Duration(seconds: Endpoints.delayMock),
-        ),
-      );
-
       final response = await dio.get(Endpoints.getNewModel);
 
       final list = response.data as List;
@@ -107,19 +69,9 @@ class RepositoryMockImpl extends Repository {
 
   @override
   Future<XResult<List<PlayerModel>>> getPlayerModel() async {
-    final dio = Dio(BaseOptions());
-    final dioAdapter = DioAdapter(dio: dio);
+    final dio = Dio();
 
     try {
-      dioAdapter.onGet(
-        Endpoints.getPlayerModel,
-        (server) => server.reply(
-          200,
-          jsonDecode(playerData),
-          delay: const Duration(seconds: Endpoints.delayMock),
-        ),
-      );
-
       final response = await dio.get(Endpoints.getPlayerModel);
 
       final list = response.data as List;
@@ -136,19 +88,9 @@ class RepositoryMockImpl extends Repository {
 
   @override
   Future<XResult<List<TableModel>>> getTableModel() async {
-    final dio = Dio(BaseOptions());
-    final dioAdapter = DioAdapter(dio: dio);
+    final dio = Dio();
 
     try {
-      dioAdapter.onGet(
-        Endpoints.getTableModel,
-        (server) => server.reply(
-          200,
-          jsonDecode(tableData),
-          delay: const Duration(seconds: Endpoints.delayMock),
-        ),
-      );
-
       final response = await dio.get(Endpoints.getTableModel);
 
       final list = response.data as List;

@@ -91,7 +91,13 @@ class SeasonsPage extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      if (state.playerModel.id != null) item(state.playerModel),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.playerModel.length,
+                        itemBuilder: (context, index) {
+                          return item(state.playerModel[index], index + 1);
+                        },
+                      ),
                       SectionAds()
                     ],
                   ),
@@ -145,7 +151,13 @@ class SeasonsPage extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      if (state.clubModel.id != null) item2(state.clubModel),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.clubModel.length,
+                        itemBuilder: (context, index) {
+                          return item2(state.clubModel[index], index + 1);
+                        },
+                      ),
                       SectionAds()
                     ],
                   ),
@@ -158,7 +170,7 @@ class SeasonsPage extends StatelessWidget {
     );
   }
 
-  Widget item(PlayerModel data) {
+  Widget item(PlayerModel data, int index) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 4),
         width: ScreenUtil().screenWidth,
@@ -172,7 +184,7 @@ class SeasonsPage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Text(
-                "1",
+                index.toString(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 9,
@@ -216,7 +228,7 @@ class SeasonsPage extends StatelessWidget {
         ));
   }
 
-  Widget item2(ClubModel data) {
+  Widget item2(ClubModel data, int index) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 4),
         width: ScreenUtil().screenWidth,
@@ -230,7 +242,7 @@ class SeasonsPage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Text(
-                "1",
+                index.toString(),
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 9,

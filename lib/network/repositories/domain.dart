@@ -1,4 +1,5 @@
 import 'package:app/network/repositories/repository.dart';
+import 'package:app/network/repositories/repository_impl.dart';
 import 'package:app/network/repositories/repository_mock_impl.dart';
 
 class Domain {
@@ -9,10 +10,12 @@ class Domain {
     return _internal!;
   }
 
+  late Repository repoMock;
   late Repository repo;
 
   Domain._() {
-    repo = RepositoryMockImpl();
+    repoMock = RepositoryMockImpl();
+    repo = RepositoryImpl();
   }
 }
 

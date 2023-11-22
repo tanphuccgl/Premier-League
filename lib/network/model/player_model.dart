@@ -72,8 +72,8 @@ class ClubId {
   String? codeClub;
   String? name;
   String? image;
-  Null? logo;
-  Null? linkclub;
+  String? logo;
+  String? linkclub;
   int? id;
   int? active;
 

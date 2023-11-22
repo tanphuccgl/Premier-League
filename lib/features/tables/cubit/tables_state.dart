@@ -2,9 +2,9 @@
 part of 'tables_bloc.dart';
 
 class TableState extends Equatable {
-  final TableModel data;
+  final List<TableModel> data;
   TableState({
-    required this.data,
+    this.data = const [],
   });
   @override
   List<Object?> get props => [
@@ -12,7 +12,7 @@ class TableState extends Equatable {
       ];
 
   TableState copyWith({
-    TableModel? data,
+    List<TableModel>? data,
   }) {
     return TableState(
       data: data ?? this.data,

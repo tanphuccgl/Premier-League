@@ -33,10 +33,14 @@ class SectionTable extends StatelessWidget {
             ),
             Container(
               color: XColors.primary1,
-              child: Column(
-                children: [
-                  if (state.data.id != null) item(state.data),
-                ],
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: state.data.length,
+                itemBuilder: (context, index) {
+                  return item(
+                    state.data[index],
+                  );
+                },
               ),
             )
           ],
@@ -78,14 +82,16 @@ class SectionTable extends StatelessWidget {
                   width: 20.w,
                   height: 20.w,
                 ),
-                Text(
-                  data.clubName?.name.toString() ?? "",
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
+                Expanded(
+                  child: Text(
+                    data.clubName?.name.toString() ?? "",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ],

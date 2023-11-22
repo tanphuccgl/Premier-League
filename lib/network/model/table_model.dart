@@ -82,9 +82,9 @@ class ClubName {
   String? codeClub;
   String? name;
   String? image;
-  Null? logo;
+  String? logo;
   int? active;
-  Null? linkclub;
+  String? linkclub;
   Stadiumid? stadiumid;
 
   ClubName(
@@ -130,10 +130,10 @@ class Stadiumid {
   String? name;
   String? image;
   int? active;
-  Null? capacity;
-  Null? address;
-  Null? pitchSize;
-  Null? description;
+  String? capacity;
+  String? address;
+  String? pitchSize;
+  String? description;
   int? id;
 
   Stadiumid(
