@@ -2,7 +2,7 @@
 
 class MatchModel {
   int? id;
-  Null? matchCode;
+  String? matchCode;
   ClubHome? clubHome;
   ClubHome? clubAway;
   String? matchDay;
@@ -13,7 +13,7 @@ class MatchModel {
   Null? resultClubHome;
   Null? resultClubAway;
   Stadiumid? stadiumId;
-  Null? referees;
+  String? referees;
   int? active;
 
   MatchModel(
@@ -166,9 +166,9 @@ class ClubName {
   String? codeClub;
   String? name;
   String? image;
-  Null? logo;
+  String? logo;
   int? active;
-  Null? linkclub;
+  String? linkclub;
   Stadiumid? stadiumid;
 
   ClubName(
@@ -257,7 +257,7 @@ class Stadiumid {
 
 class Season {
   String? seasonname;
-  Null? champion;
+  String? champion;
   int? active;
   int? activeUI;
   int? id;

@@ -26,7 +26,13 @@ class SectionFixtures extends StatelessWidget {
                 ),
               ),
             ),
-            if (state.data.id != null) item(state.data),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: state.data.length,
+              itemBuilder: (context, index) {
+                return item(state.data[index]);
+              },
+            ),
             SizedBox(
               height: 15,
             ),
@@ -50,19 +56,22 @@ class SectionFixtures extends StatelessWidget {
               flex: 3,
               child: Row(
                 children: [
-                  Text(
-                    data.clubHome?.clubName?.name ?? "",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
+                  Expanded(
+                    child: Text(
+                      data.clubHome?.clubName?.name ?? "",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                  Image.network(
-                    data.clubHome?.clubName?.image ?? XImage.network,
-                    width: 15,
-                    height: 15,
-                  ),
+                  if (data.clubHome?.clubName?.image != null)
+                    Image.network(
+                      data.clubHome?.clubName?.image ?? XImage.network,
+                      width: 15,
+                      height: 15,
+                    ),
                 ],
               )),
           Expanded(
@@ -92,17 +101,20 @@ class SectionFixtures extends StatelessWidget {
               flex: 3,
               child: Row(
                 children: [
-                  Image.network(
-                    data.clubAway?.clubName?.image ?? XImage.network,
-                    width: 15,
-                    height: 15,
-                  ),
-                  Text(
-                    data.clubAway?.clubName?.name ?? "",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
+                  if (data.clubAway?.clubName?.image != null)
+                    Image.network(
+                      data.clubAway?.clubName?.image ?? XImage.network,
+                      width: 15,
+                      height: 15,
+                    ),
+                  Expanded(
+                    child: Text(
+                      data.clubAway?.clubName?.name ?? "",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ],

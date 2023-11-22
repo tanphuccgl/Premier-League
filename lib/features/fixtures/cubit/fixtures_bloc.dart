@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 part 'fixtures_state.dart';
 
 class FixturesBloc extends Cubit<FixturesState> {
-  FixturesBloc() : super(FixturesState(MatchModel())) {
+  FixturesBloc() : super(FixturesState()) {
     getMatch();
   }
 
@@ -16,7 +16,7 @@ class FixturesBloc extends Cubit<FixturesState> {
   Future<void> getMatch() async {
     final result = await _domain.repo.getMatch();
     if (result.isSuccess) {
-      emit(state.copyWith(data: result.data));
+      emit(state.copyWith(data: [...result.data!]));
     } else {}
   }
 }

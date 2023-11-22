@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 part 'news_state.dart';
 
 class NewsBloc extends Cubit<NewsState> {
-  NewsBloc() : super(NewsState(NewModel())) {
+  NewsBloc() : super(NewsState()) {
     getNewModel();
   }
 
@@ -16,7 +16,7 @@ class NewsBloc extends Cubit<NewsState> {
   Future<void> getNewModel() async {
     final result = await _domain.repo.getNewModel();
     if (result.isSuccess) {
-      emit(state.copyWith(data: result.data));
+      emit(state.copyWith(data: [...result.data!]));
     } else {}
   }
 }

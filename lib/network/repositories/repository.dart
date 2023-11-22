@@ -6,9 +6,9 @@ import 'package:app/network/model/player_model.dart';
 import 'package:app/network/model/table_model.dart';
 
 abstract class Repository {
-  Future<XResult<MatchModel>> getMatch();
-  Future<XResult<ClubModel>> getClubModel();
-  Future<XResult<NewModel>> getNewModel();
-  Future<XResult<PlayerModel>> getPlayerModel();
-  Future<XResult<TableModel>> getTableModel();
+  Future<XResult<List<MatchModel>>> getMatch();
+  Future<XResult<List<ClubModel>>> getClubModel();
+  Future<XResult<List<NewModel>>> getNewModel();
+  Future<XResult<List<PlayerModel>>> getPlayerModel();
+  Future<XResult<List<TableModel>>> getTableModel();
 }

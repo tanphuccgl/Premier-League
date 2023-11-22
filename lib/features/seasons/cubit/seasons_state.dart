@@ -2,9 +2,9 @@
 part of 'seasons_bloc.dart';
 
 class SeasonsState extends Equatable {
-  final ClubModel clubModel;
-  final PlayerModel playerModel;
-  const SeasonsState(this.clubModel, this.playerModel);
+  final List<ClubModel> clubModel;
+  final List<PlayerModel> playerModel;
+  const SeasonsState({this.clubModel = const [], this.playerModel = const []});
 
   @override
   List<Object?> get props => [
@@ -13,12 +13,12 @@ class SeasonsState extends Equatable {
       ];
 
   SeasonsState copyWith({
-    ClubModel? clubModel,
-    PlayerModel? playerModel,
+    List<ClubModel>? clubModel,
+    List<PlayerModel>? playerModel,
   }) {
     return SeasonsState(
-      clubModel ?? this.clubModel,
-      playerModel ?? this.playerModel,
+      clubModel: clubModel ?? this.clubModel,
+      playerModel: playerModel ?? this.playerModel,
     );
   }
 }

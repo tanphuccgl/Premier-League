@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 part 'tables_state.dart';
 
 class TableBloc extends Cubit<TableState> {
-  TableBloc() : super(TableState(data: TableModel())) {
+  TableBloc() : super(TableState()) {
     getTableModel();
   }
 
@@ -16,7 +16,7 @@ class TableBloc extends Cubit<TableState> {
   Future<void> getTableModel() async {
     final result = await _domain.repo.getTableModel();
     if (result.isSuccess) {
-      emit(state.copyWith(data: result.data));
+      emit(state.copyWith(data: [...result.data!]));
     } else {}
   }
 }
